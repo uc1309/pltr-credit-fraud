@@ -1,0 +1,3 @@
+%%MatrixMarket matrix coordinate real general
+56 1 1
+1 1 -6.093569770045136
