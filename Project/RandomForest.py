@@ -8,6 +8,12 @@ from sklearn.metrics import average_precision_score
 from sklearn.metrics import plot_precision_recall_curve
 import matplotlib.pyplot as plt
 
+# Random forest code for real-world credit card data
+# iterations    - controls the number of models fit
+# APs           - stores the AP scores
+#
+# Additionally, generates historgrams of AP scores
+
 iterations = 30
 APs = np.zeros((iterations, 2))
 
@@ -21,6 +27,7 @@ for i in range(iterations):
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
     clf = RandomForestClassifier(n_estimators=100, max_depth=10)
     clf.fit(X_train, y_train)
+    # Uncomment to plot PR curve
 #    disp = plot_precision_recall_curve(clf, X_test, y_test)
 #    plt.show()
     APs[i, 0] = average_precision_score(y_train, clf.predict(X_train))

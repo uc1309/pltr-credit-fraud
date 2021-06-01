@@ -8,6 +8,12 @@ from sklearn.metrics import average_precision_score
 import matplotlib.pyplot as plt
 from sklearn.metrics import plot_precision_recall_curve
 
+# Logistic regression code for real-world credit card data
+# iterations    - controls the number of models fit
+# APs           - stores the AP scores
+#
+# Additionally, generates historgrams of AP scores
+
 iterations = 30
 APs = np.zeros((iterations, 2))
 
@@ -21,7 +27,8 @@ for i in range(iterations):
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
     lr = LogisticRegression(max_iter = 2000)
     lr.fit(X_train, y_train)
-#    disp = plot_precision_recall_curve(lr, X_test, y_test)
+    # Uncomment to plot PR curve
+#    disp = plot_precision_recall_curve(clf, X_test, y_test)
 #    plt.show()
     APs[i, 0] = average_precision_score(y_train, lr.predict(X_train))
     APs[i, 1] = average_precision_score(y_test, lr.predict(X_test))
